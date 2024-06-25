@@ -11,7 +11,6 @@ const fetcher = axios.create({
 
 fetcher.interceptors.request.use((config) => {
   const token = storage.get(appConfig.TOKEN_KEY)
-  config.headers.Language = 'zh'
 
   if (token) {
     config.headers.Authorization = token

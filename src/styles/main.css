@@ -22,3 +22,7 @@
     @apply container mx-auto white-box;
   }
 }
+
+/* .ant-table-thead > tr > th {
+  background: none !important;
+} */
