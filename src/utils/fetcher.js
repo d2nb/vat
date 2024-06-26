@@ -28,7 +28,7 @@ fetcher.interceptors.response.use(({ data }) => {
   switch (data.code) {
     case 40000:
       storage.clear()
-      router.push('/login')
+      router.push('/sign-in')
       break
   }
 

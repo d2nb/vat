@@ -1,3 +1,5 @@
+import gridBg from './tw-plugin/grid-bg'
+
 /** @type {import('tailwindcss').Config} */
 export default {
   corePlugins: {
@@ -7,9 +9,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        brand: '#4856e9'
+        brand: '#6366f1',
+        brand_blue: '#00AEEC',
+        brand_blue_thin: '#DFF6FD',
+        brand_blue_hover: '#40C5F1',
+        brand_blue_active: '#008AC5'
       }
     }
   },
-  plugins: []
+  plugins: [gridBg]
 }

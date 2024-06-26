@@ -1,8 +1,15 @@
+<script setup>
+import { LinkButton } from '@/components'
+</script>
+
 <template>
-  <div class="relative h-screen w-full">
+  <div class="relative h-screen w-full bg-white bg-grid-black/[0.2]">
     <div
-      class="absolute left-0 top-0 w-full h-full bg-[radial-gradient(50%_50%_at_50%_50%,rgba(204,204,255,0.85)_0%,transparent)]"
-    />
+      className="absolute pointer-events-none inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_60%,black)]"
+    ></div>
+    <div
+      class="absolute left-0 top-0 w-full h-full bg-[radial-gradient(50%_50%_at_50%_50%,rgba(99,102,241,0.25)_20%,transparent)]"
+    ></div>
     <div class="flex justify-center items-center w-full h-full">
       <div class="rounded-xl ring-1 ring-gray-200 shadow w-[400px] bg-white/75 backdrop-blur">
         <div class="p-6">
@@ -16,7 +23,7 @@
               <a-input-password placeholder="请输入密码" />
             </a-form-item>
             <div class="text-right py-4">
-              <a>忘记密码?</a>
+              <LinkButton>忘记密码?</LinkButton>
             </div>
             <a-form-item class="!mb-0">
               <a-button html-type="submit" block type="primary">

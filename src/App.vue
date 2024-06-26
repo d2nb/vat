@@ -11,7 +11,7 @@ dayjs.locale('zh-cn')
   <a-config-provider
     :theme="{
       token: {
-        colorPrimary: '#4856e9'
+        colorPrimary: '#6366f1'
       }
     }"
     :locale="zhCN"
