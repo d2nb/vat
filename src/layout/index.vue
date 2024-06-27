@@ -1,9 +1,15 @@
 <script setup>
-import { ref } from 'vue'
-import { RouterView } from 'vue-router'
+import { ref, computed } from 'vue'
+import { RouterView, useRoute } from 'vue-router'
 import { Copyright } from '@/components'
 import User from './User.vue'
 import SideMenu from './SideMenu.vue'
+
+const route = useRoute()
+
+const bgColor = computed(() => route.meta.bgColor || '#f8f9fa')
+
+const hideBreadcrumb = computed(() => route.meta.hideBreadcrumb)
 
 const collapsed = ref(false)
 
@@ -33,8 +39,13 @@ const toggleCollapsed = () => {
         </div>
       </section>
     </a-layout-sider>
-    <section class="flex flex-col bg-[#f8f9fa] w-full h-full overflow-auto">
-      <div class="p-6 pb-0">
+    <section
+      class="flex flex-col w-full h-full overflow-auto"
+      :style="{
+        backgroundColor: bgColor
+      }"
+    >
+      <div v-if="!hideBreadcrumb" class="p-6 pb-0">
         <a-breadcrumb>
           <a-breadcrumb-item>个人中心</a-breadcrumb-item>
           <a-breadcrumb-item>用户设置</a-breadcrumb-item>

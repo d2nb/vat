@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '@/layout/index.vue'
-import Dashboard from '@/views/dashboard/index.vue'
+import Home from '@/views/home/index.vue'
 import Signin from '@/views/auth/sign-in.vue'
 
 const router = createRouter({
@@ -10,12 +10,21 @@ const router = createRouter({
       path: '/',
       name: 'layout',
       component: Layout,
-      redirect: '/dashboard',
+      redirect: '/home',
       children: [
         {
-          path: '/dashboard',
-          name: 'dashboard',
-          component: Dashboard
+          path: '/home',
+          name: 'home',
+          component: Home,
+          meta: {
+            bgColor: '#ffffff',
+            hideBreadcrumb: true
+          }
+        },
+        {
+          path: '/list',
+          name: 'list',
+          component: () => import('@/views/list/index.vue')
         }
       ]
     },
