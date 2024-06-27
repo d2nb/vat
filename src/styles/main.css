@@ -1,4 +1,5 @@
 @import './reset.css';
+@import './antd-reset.css';
 
 @tailwind base;
 @tailwind components;
@@ -21,8 +22,11 @@
   .section-wrap {
     @apply container mx-auto white-box;
   }
-}
 
-/* .ant-table-thead > tr > th {
-  background: none !important;
-} */
+  .line-1 {
+    white-space: nowrap;
+    word-wrap: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

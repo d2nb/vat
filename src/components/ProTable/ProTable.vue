@@ -62,7 +62,7 @@ const customRow = (record) => {
 </script>
 
 <template>
-  <div class="flex justify-between items-center mb-5">
+  <!-- <div class="flex justify-between items-center mb-5">
     <div class="flex items-center">
       <slot name="left"></slot>
     </div>
@@ -90,7 +90,7 @@ const customRow = (record) => {
         <FullscreenOutlined v-else @click="onFullscreen" />
       </a-space>
     </div>
-  </div>
+  </div> -->
 
   <a-table v-bind="$attrs" :columns="tableColumns" :customRow="customRow">
     <template v-for="(item, key) in $slots" v-slot:[key]="props">

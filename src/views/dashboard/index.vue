@@ -20,6 +20,10 @@ const columns = [
   {
     title: '运营负责人',
     dataIndex: 'con_opera_user_name'
+  },
+  {
+    dataIndex: 'action',
+    width: 80
   }
 ]
 
@@ -31,7 +35,7 @@ const schema = reactive([
   },
   {
     key: 'phone',
-    title: '绑定手机号',
+    title: '手机号码',
     widget: <a-input />
   },
   {
@@ -49,8 +53,18 @@ const handleSearch = (values) => {
 </script>
 
 <template>
-  <SearchForm :schema="schema" @search="handleSearch" />
-  <div class="bg-white p-6 mt-6">
-    <ProTable :columns="columns" :data-source="data" />
+  <div class="bg-white p-6">
+    <SearchForm :schema="schema" @search="handleSearch" />
+    <ProTable :columns="columns" :data-source="data">
+      <template #bodyCell="{ column }">
+        <template v-if="column.dataIndex === 'action'">
+          <div
+            class="inline-block py-1 px-2 rounded hover:bg-[#f0f0f0] active:bg-[#e8e8e8] cursor-pointer"
+          >
+            <RightOutlined />
+          </div>
+        </template>
+      </template>
+    </ProTable>
   </div>
 </template>

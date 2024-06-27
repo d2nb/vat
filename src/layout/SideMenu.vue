@@ -28,5 +28,5 @@ const menu = [
 </script>
 
 <template>
-  <a-menu theme="light" mode="inline" :items="menu" />
+  <a-menu class="!border-e-0" theme="light" mode="inline" :items="menu" />
 </template>

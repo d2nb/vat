@@ -1,0 +1,11 @@
+.ant-menu-sub {
+  background-color: transparent !important;
+}
+
+.ant-table-wrapper th {
+  background: none !important;
+}
+
+.ant-table-wrapper th::before {
+  display: none;
+}

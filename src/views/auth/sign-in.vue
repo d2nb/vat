@@ -1,5 +1,5 @@
 <script setup>
-import { LinkButton } from '@/components'
+import { LinkButton, Copyright } from '@/components'
 </script>
 
 <template>
@@ -34,11 +34,8 @@ import { LinkButton } from '@/components'
         </div>
       </div>
     </div>
-    <div class="fixed left-0 bottom-0 w-full py-6 text-center text-sm text-gray-400">
-      <CopyrightOutlined />
-      <span>灵匠科技</span>
-      <span class="mx-1">|</span>
-      <span>v1.22.4</span>
+    <div class="fixed left-0 bottom-0 w-full">
+      <Copyright />
     </div>
   </div>
 </template>

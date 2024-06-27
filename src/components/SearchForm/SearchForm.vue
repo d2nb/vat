@@ -48,21 +48,19 @@ const handleSearch = async () => {
 </script>
 
 <template>
-  <div class="white-box pb-0">
-    <a-form :labelCol="{ style: { width: props.labelWidth } }">
-      <a-row class="w-full">
-        <a-col v-for="(value, key) in props.schema" :key="key" :span="6">
-          <a-form-item :label="value.title" class="px-2" v-bind="validateInfos[key]">
-            <component :is="value.widget" v-model:value="formData[key]" v-bind="value.props" />
-          </a-form-item>
-        </a-col>
-        <a-col :span="span" class="text-right px-2">
-          <a-space class="mb-6">
-            <a-button type="primary" @click="handleSearch">查询</a-button>
-            <a-button @click="handleReset">重置</a-button>
-          </a-space>
-        </a-col>
-      </a-row>
-    </a-form>
-  </div>
+  <a-form :labelCol="{ style: { width: props.labelWidth } }">
+    <a-row class="w-full">
+      <a-col v-for="(value, key) in props.schema" :key="key" :span="6">
+        <a-form-item :label="value.title" class="px-2" v-bind="validateInfos[key]">
+          <component :is="value.widget" v-model:value="formData[key]" v-bind="value.props" />
+        </a-form-item>
+      </a-col>
+      <a-col :span="span" class="text-right px-2">
+        <a-space class="mb-6">
+          <a-button type="primary" @click="handleSearch">查询</a-button>
+          <a-button @click="handleReset">重置</a-button>
+        </a-space>
+      </a-col>
+    </a-row>
+  </a-form>
 </template>
