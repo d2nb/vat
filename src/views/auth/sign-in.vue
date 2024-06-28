@@ -1,5 +1,12 @@
 <script setup>
+import { useRouter } from 'vue-router'
 import { LinkButton, Copyright } from '@/components'
+
+const router = useRouter()
+
+const handleSignin = () => {
+  router.push('/')
+}
 </script>
 
 <template>
@@ -26,7 +33,7 @@ import { LinkButton, Copyright } from '@/components'
               <LinkButton>忘记密码?</LinkButton>
             </div>
             <a-form-item class="!mb-0">
-              <a-button html-type="submit" block type="primary">
+              <a-button html-type="submit" block type="primary" @click="handleSignin">
                 <span>登录</span>
               </a-button>
             </a-form-item>

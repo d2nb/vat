@@ -3,6 +3,7 @@
 }
 
 .ant-table-wrapper th {
+  color: #888 !important;
   background: none !important;
 }
 

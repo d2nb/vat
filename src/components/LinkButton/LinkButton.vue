@@ -8,7 +8,7 @@ const props = defineProps({
 
 const classes = computed(() => {
   return cn(
-    'transition p-0 bg-transparent text-brand_blue cursor-pointer hover:text-brand_blue_hover active:text-brand_blue_active',
+    'transition p-0 bg-transparent text-blue-500 hover:text-blue-400 active:text-blue-600 cursor-pointer',
     {
       'text-gray-400 hover:text-gray-400 active:text-gray-400 cursor-not-allowed': props.disabled
     }

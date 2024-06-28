@@ -10,7 +10,9 @@ const fetcher = axios.create({
 })
 
 fetcher.interceptors.request.use((config) => {
-  const token = storage.get(appConfig.TOKEN_KEY)
+  // const token = storage.get(appConfig.TOKEN_KEY)
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJwbGF0Zm9ybSI6MiwiZXhwIjoxNzE5NjI0NDU4LCJpc3MiOiJkYWVyZG8tbWVkaWNpbmUifQ.2VptPZOgh1Tidi0wbQwRg-sXGZ5s6zJZybt4-nsaP9A'
 
   if (token) {
     config.headers.Authorization = token

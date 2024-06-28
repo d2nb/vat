@@ -17,12 +17,18 @@ const items = [
   {
     title: '待处理',
     value: 16
+  },
+  {
+    title: '总计工作时长',
+    value: '60h',
+    rate: '5.5%',
+    isIncrease: false
   }
 ]
 </script>
 
 <template>
-  <ul class="flex items-center">
+  <ul class="flex items-center mb-10">
     <li v-for="(item, index) in items" :key="index" class="mr-16">
       <div class="text-gray-400 mb-2">{{ item.title }}</div>
       <div class="flex items-center">

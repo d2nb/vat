@@ -1,6 +1,6 @@
 <script setup lang="jsx">
 import { reactive } from 'vue'
-import { SearchForm, ProTable } from '@/components'
+import { SearchForm, ProTable, ActionsModal } from '@/components'
 import { getTestList } from '@/api'
 import { useTable } from '@/hooks'
 
@@ -53,13 +53,18 @@ const handleSearch = (values) => {
 </script>
 
 <template>
+  <ActionsModal :selected="3">
+    <button class="text-btn">导出</button>
+    <button class="text-btn">导出</button>
+    <a-button danger type="text">删除</a-button>
+  </ActionsModal>
   <div class="bg-white p-6">
     <SearchForm :schema="schema" @search="handleSearch" />
     <ProTable :columns="columns" :data-source="data">
       <template #bodyCell="{ column }">
         <template v-if="column.dataIndex === 'action'">
           <div
-            class="inline-block py-1 px-2 rounded hover:bg-[#f0f0f0] active:bg-[#e8e8e8] cursor-pointer"
+            class="inline-block py-1 px-3 rounded hover:bg-[#f0f0f0] active:bg-[#e8e8e8] cursor-pointer"
           >
             <RightOutlined />
           </div>

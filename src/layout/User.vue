@@ -1,12 +1,49 @@
 <script setup>
+import { useRouter } from 'vue-router'
+import { UserOutlined, LogoutOutlined } from '@ant-design/icons-vue'
+
+const router = useRouter()
+
 const props = defineProps({
   collapsed: Boolean
 })
+
+const handleSignout = () => {
+  router.push('/sign-in')
+}
+
+const menuItems = [
+  {
+    icon: UserOutlined,
+    name: '个人中心'
+  },
+  {
+    icon: LogoutOutlined,
+    name: '退出登录',
+    handler: handleSignout
+  }
+]
 </script>
 
 <template>
   <div v-if="props.collapsed" class="flex justify-center py-4">
-    <a-avatar size="small" class="bg-[#f56a00]">尚</a-avatar>
+    <a-dropdown trigger="click">
+      <a-avatar size="small" class="bg-[#f56a00] cursor-pointer">尚</a-avatar>
+      <template #overlay>
+        <a-menu>
+          <a-menu-item
+            v-for="(item, index) in menuItems"
+            :key="index"
+            @click="() => item.handler && item.handler()"
+          >
+            <div class="px-2">
+              <component :is="item.icon" class="mr-1" />
+              {{ item.name }}
+            </div>
+          </a-menu-item>
+        </a-menu>
+      </template>
+    </a-dropdown>
   </div>
   <div v-else class="flex justify-between items-center py-4 px-6">
     <a-dropdown trigger="click">
@@ -17,16 +54,14 @@ const props = defineProps({
 
       <template #overlay>
         <a-menu>
-          <a-menu-item>
-            <div class="px-1 py-1">
-              <UserOutlined class="mr-1" />
-              个人中心
-            </div>
-          </a-menu-item>
-          <a-menu-item>
-            <div class="px-1 py-1">
-              <LogoutOutlined class="mr-1" />
-              退出登录
+          <a-menu-item
+            v-for="(item, index) in menuItems"
+            :key="index"
+            @click="() => item.handler && item.handler()"
+          >
+            <div class="px-2">
+              <component :is="item.icon" class="mr-1" />
+              {{ item.name }}
             </div>
           </a-menu-item>
         </a-menu>

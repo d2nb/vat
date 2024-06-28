@@ -17,7 +17,6 @@ const router = createRouter({
           name: 'home',
           component: Home,
           meta: {
-            bgColor: '#ffffff',
             hideBreadcrumb: true
           }
         },
