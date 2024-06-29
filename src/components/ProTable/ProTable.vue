@@ -21,14 +21,7 @@ const tableKeys = props.columns.map((item) => ({
   value: item.dataIndex
 }))
 
-const propColumns = props.columns.map((item) => {
-  return {
-    ellipsis: true,
-    ...item
-  }
-})
-
-const tableColumns = ref([...propColumns])
+const tableColumns = ref([...props.columns])
 const selectedKeys = ref(tableKeys.map((item) => item.value))
 
 const handleFieldChange = (value) => {

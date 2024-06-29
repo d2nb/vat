@@ -45,6 +45,21 @@ const handleSearch = async () => {
     console.log(error)
   }
 }
+
+const getWidget = (widget) => {
+  switch (widget) {
+    case 'input':
+      return <a-input />
+    case 'select':
+      return <a-select />
+    case 'date-picker':
+      return <a-date-picker />
+    case 'range-picker':
+      return <a-range-picker />
+    default:
+      return <a-input />
+  }
+}
 </script>
 
 <template>
@@ -52,7 +67,12 @@ const handleSearch = async () => {
     <a-row class="w-full">
       <a-col v-for="(value, key) in props.schema" :key="key" :span="6">
         <a-form-item :label="value.title" class="px-2" v-bind="validateInfos[key]">
-          <component :is="value.widget" v-model:value="formData[key]" v-bind="value.props" />
+          <component
+            :is="getWidget(value.widget)"
+            class="w-full"
+            v-model:value="formData[key]"
+            v-bind="value.props"
+          />
         </a-form-item>
       </a-col>
       <a-col :span="span" class="text-right px-2">

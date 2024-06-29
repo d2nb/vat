@@ -1,6 +1,6 @@
 <script setup lang="jsx">
-import { reactive } from 'vue'
-import { SearchForm, ProTable, ActionsModal } from '@/components'
+import { ref, reactive, computed } from 'vue'
+import { SearchForm, ProTable, TableActBar, Drawer, IconBtn } from '@/components'
 import { getTestList } from '@/api'
 import { useTable } from '@/hooks'
 
@@ -27,49 +27,74 @@ const columns = [
   }
 ]
 
-const schema = reactive([
-  {
-    key: 'account',
+const schema = reactive({
+  account: {
     title: '客户账号',
-    widget: <a-input />
+    widget: 'input'
   },
-  {
-    key: 'phone',
+  phone: {
     title: '手机号码',
-    widget: <a-input />
+    widget: 'input'
   },
-  {
-    key: 'signupTimeRange',
+  signupTimeRange: {
     title: '注册时间',
-    widget: <a-range-picker value-format="YYYY-MM-DD" class="w-full" />
+    props: {
+      valueFormat: 'YYYY-MM-DD'
+    },
+    widget: 'range-picker'
   }
-])
+})
 
 const { data } = useTable(getTestList)
 
 const handleSearch = (values) => {
   console.log(values)
 }
+
+const selectedRowKeys = ref([])
+const onSelectChange = (keys) => {
+  selectedRowKeys.value = keys
+}
+const isOpen = computed(() => selectedRowKeys.value.length > 0)
+
+const isOpenDrawer = ref(false)
 </script>
 
 <template>
-  <ActionsModal :selected="3">
+  <TableActBar v-model:open="isOpen" :selected="selectedRowKeys.length">
     <button class="text-btn">导出</button>
-    <button class="text-btn">导出</button>
-    <a-button danger type="text">删除</a-button>
-  </ActionsModal>
+    <a-button danger type="text" size="small">删除</a-button>
+  </TableActBar>
   <div class="bg-white p-6">
-    <SearchForm :schema="schema" @search="handleSearch" />
-    <ProTable :columns="columns" :data-source="data">
+    <SearchForm :schema="schema" @search="handleSearch" class="mb-4" />
+    <ProTable
+      rowKey="id"
+      :columns="columns"
+      :data-source="data"
+      :row-selection="{ selectedRowKeys, preserveSelectedRowKeys: true, onChange: onSelectChange }"
+    >
       <template #bodyCell="{ column }">
         <template v-if="column.dataIndex === 'action'">
-          <div
-            class="inline-block py-1 px-3 rounded hover:bg-[#f0f0f0] active:bg-[#e8e8e8] cursor-pointer"
-          >
+          <IconBtn @click="isOpenDrawer = true">
             <RightOutlined />
-          </div>
+          </IconBtn>
         </template>
       </template>
     </ProTable>
   </div>
+
+  <Drawer v-model:open="isOpenDrawer" title="媒体账号">
+    <a-descriptions :column="1" :labelStyle="{ color: '#1c1f239e' }">
+      <a-descriptions-item label="账户ID">7317943630415659009</a-descriptions-item>
+      <a-descriptions-item label="代理商">上海ABC</a-descriptions-item>
+      <a-descriptions-item label="销售负责人">张威</a-descriptions-item>
+      <a-descriptions-item label="运营负责人">王琦</a-descriptions-item>
+    </a-descriptions>
+    <template #footer>
+      <a-space>
+        <a-button type="text" @click="isOpenDrawer = false">取消</a-button>
+        <a-button danger type="primary">删除</a-button>
+      </a-space>
+    </template>
+  </Drawer>
 </template>

@@ -10,3 +10,8 @@
 .ant-table-wrapper th::before {
   display: none;
 }
+
+.ant-drawer-mask {
+  background-color: rgba(0, 0, 0, 0.15) !important;
+  backdrop-filter: blur(4px);
+}
