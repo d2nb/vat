@@ -34,6 +34,7 @@ const menuItems = [
           <a-menu-item
             v-for="(item, index) in menuItems"
             :key="index"
+            title=""
             @click="() => item.handler && item.handler()"
           >
             <div class="px-2">

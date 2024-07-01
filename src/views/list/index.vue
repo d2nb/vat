@@ -28,7 +28,7 @@ const columns = [
 ]
 
 const schema = reactive({
-  account: {
+  account_name: {
     title: '客户账号',
     widget: 'input'
   },
@@ -45,10 +45,16 @@ const schema = reactive({
   }
 })
 
-const { data } = useTable(getTestList)
+const { data, pagination, isLoading, run } = useTable(getTestList)
 
 const handleSearch = (values) => {
-  console.log(values)
+  run(values)
+}
+
+const handleReset = (values) => {
+  pagination.current = 1
+  pagination.pageSize = 10
+  run(values)
 }
 
 const selectedRowKeys = ref([])
@@ -65,12 +71,14 @@ const isOpenDrawer = ref(false)
     <button class="text-btn">导出</button>
     <a-button danger type="text" size="small">删除</a-button>
   </TableActBar>
-  <div class="bg-white p-6">
-    <SearchForm :schema="schema" @search="handleSearch" class="mb-4" />
+  <div class="white-box">
+    <SearchForm :schema="schema" @search="handleSearch" @reset="handleReset" class="mb-4" />
     <ProTable
       rowKey="id"
       :columns="columns"
       :data-source="data"
+      :pagination="pagination"
+      :loading="isLoading"
       :row-selection="{ selectedRowKeys, preserveSelectedRowKeys: true, onChange: onSelectChange }"
     >
       <template #bodyCell="{ column }">

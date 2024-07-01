@@ -1,4 +1,4 @@
-import { reactive, computed } from 'vue'
+import { reactive, computed, toRaw } from 'vue'
 import useFetch from './useFetch'
 
 const useTable = (service, options = {}) => {
@@ -13,11 +13,8 @@ const useTable = (service, options = {}) => {
       pagination.current = page
       pagination.pageSize = pageSize
 
-      fetchReturn.run({
-        ...fetchReturn.params.value,
-        page,
-        page_size: pageSize
-      })
+      const [params] = toRaw(fetchReturn.params.value)
+      run(params)
     }
   })
 
@@ -34,11 +31,20 @@ const useTable = (service, options = {}) => {
     }
   })
 
-  const data = computed(() => fetchReturn.data.value?.list || [])
+  const data = computed(() => fetchReturn.data.value?.list)
+
+  const run = (params) => {
+    return fetchReturn.run({
+      ...params,
+      page: pagination.current,
+      page_size: pagination.pageSize
+    })
+  }
 
   return {
     ...fetchReturn,
     data,
+    run,
     pagination
   }
 }

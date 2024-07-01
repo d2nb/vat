@@ -51,7 +51,7 @@ const tableData = [
     <p>全球首款 Transformer 专用 AI 芯片 Sohu 发布：比英伟达 H100 快 20 倍！</p>
     <ArrowRightOutlined class="ml-auto" />
   </div>
-  <div class="section-wrap">
+  <div class="section-wrap xl:py-8 xl:px-14">
     <div class="flex items-center text-3xl font-bold mb-8">
       <span class="mr-2 text-4xl">👋</span>
       <!-- <img src="@/assets/imgs/hello-icon.png" alt="hello" class="w-10 h-10 mr-2" /> -->

@@ -12,7 +12,7 @@ const fetcher = axios.create({
 fetcher.interceptors.request.use((config) => {
   // const token = storage.get(appConfig.TOKEN_KEY)
   const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJwbGF0Zm9ybSI6MiwiZXhwIjoxNzE5NzA3NTM4LCJpc3MiOiJkYWVyZG8tbWVkaWNpbmUifQ.v8G13XH0tbkB8fGB0RXh9lA2uzXyMj5A2MtFESHVeZg'
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJwbGF0Zm9ybSI6MiwiZXhwIjoxNzE5ODgyNTIxLCJpc3MiOiJkYWVyZG8tbWVkaWNpbmUifQ.04sU133kiKsYCnNKRw5msmeYA2_kXwsf0Efjc4Mhu_c'
 
   if (token) {
     config.headers.Authorization = token

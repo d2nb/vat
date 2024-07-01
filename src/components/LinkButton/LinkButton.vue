@@ -17,7 +17,7 @@ const classes = computed(() => {
 </script>
 
 <template>
-  <button :class="classes">
+  <a :class="classes" v-bind="$attrs">
     <slot></slot>
-  </button>
+  </a>
 </template>

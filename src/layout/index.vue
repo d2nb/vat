@@ -7,8 +7,6 @@ import SideMenu from './SideMenu.vue'
 
 const route = useRoute()
 
-const bgColor = computed(() => route.meta.bgColor || '#f8f9fa')
-
 const hideBreadcrumb = computed(() => route.meta.hideBreadcrumb)
 
 const collapsed = ref(false)
@@ -20,14 +18,15 @@ const toggleCollapsed = () => {
 
 <template>
   <a-layout class="h-screen">
-    <a-layout-sider v-model:collapsed="collapsed" theme="light" :width="240" class="border-r">
+    <a-layout-sider
+      v-model:collapsed="collapsed"
+      theme="light"
+      :width="240"
+      class="border-r relative z-[1]"
+    >
       <section class="flex flex-col h-full overflow-hidden">
         <User :collapsed="collapsed" />
         <SideMenu />
-        <!-- <div :class="`mt-auto p-4 text-base ${collapsed ? 'text-center' : 'text-right'}`">
-          <menu-unfold-outlined v-if="collapsed" @click="toggleCollapsed" />
-          <menu-fold-outlined v-else @click="toggleCollapsed" />
-        </div> -->
         <div :class="`mt-auto p-4 ${collapsed ? 'text-center' : 'text-left'}`">
           <div
             class="inline-flex items-center hover:bg-[#f0f0f0] p-2 rounded cursor-pointer"
@@ -39,12 +38,7 @@ const toggleCollapsed = () => {
         </div>
       </section>
     </a-layout-sider>
-    <section
-      class="flex flex-col w-full h-full overflow-auto"
-      :style="{
-        backgroundColor: bgColor
-      }"
-    >
+    <section class="relative flex flex-col w-full h-full bg-[#f8f9fa] overflow-auto">
       <div v-if="!hideBreadcrumb" class="p-6 pb-0">
         <a-breadcrumb>
           <a-breadcrumb-item>个人中心</a-breadcrumb-item>

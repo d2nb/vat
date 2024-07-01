@@ -17,18 +17,19 @@ const menu = [
     icon: <ProfileOutlined />
   },
   {
-    key: '9',
+    key: 'form',
+    title: '表单页',
+    label: '表单页',
+    icon: <FormOutlined />
+  },
+  {
+    key: 'user-center',
     title: '个人中心',
     label: '个人中心',
     icon: <UserOutlined />,
     children: [
       {
-        key: '9-1',
-        title: '用户信息',
-        label: '用户信息'
-      },
-      {
-        key: '9-2',
+        key: 'user/settings',
         title: '用户设置',
         label: '用户设置'
       }

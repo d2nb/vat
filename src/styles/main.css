@@ -17,7 +17,7 @@
 
 @layer components {
   .white-box {
-    @apply bg-white p-6 xl:py-8 xl:px-14 rounded-lg;
+    @apply bg-white p-6 xl:p-8 rounded-lg shadow-md;
   }
   .section-wrap {
     @apply max-w-screen-xl mx-auto white-box;

@@ -24,6 +24,22 @@ const router = createRouter({
           path: '/list',
           name: 'list',
           component: () => import('@/views/list/index.vue')
+        },
+        {
+          path: '/form',
+          name: 'form',
+          component: () => import('@/views/form/index.vue')
+        },
+        {
+          path: '/user',
+          name: 'user',
+          children: [
+            {
+              path: 'settings',
+              name: 'settings',
+              component: () => import('@/views/user/settings/index.vue')
+            }
+          ]
         }
       ]
     },

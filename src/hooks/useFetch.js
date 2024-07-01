@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { useAsyncState } from '@vueuse/core'
 
 const processParams = (params) => {
@@ -10,17 +10,22 @@ const processParams = (params) => {
 
 const useFetch = (service, options = {}) => {
   const params = ref([])
+  const data = ref()
 
-  const { state, isLoading, execute, error } = useAsyncState(
+  const { isLoading, execute, error } = useAsyncState(
     (...args) => {
       params.value = args.length ? args : processParams(options.defaultParams)
       return service(...params.value)
     },
     undefined,
-    options
+    {
+      ...options,
+      onSuccess(res) {
+        data.value = res.data
+        options.onSuccess && options.onSuccess(res.data)
+      }
+    }
   )
-
-  const data = computed(() => state.value?.data)
 
   const run = (...args) => {
     if (args.length) {
